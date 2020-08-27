@@ -1,22 +1,24 @@
 <%- include('partials/header', { title: 'Meals' }) %>
   <p><a href="/meals/add">Add Meal</a></p>
   <p><a href="/students/topup">Top up Money</a></p>
-  <table style="width: 50%;text-align: center;">
-    <tr>
-      <th>No</th>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Stock</th>
-      <th>QR Code</th>
-    </tr>
-    <% for (let i = 0; i < data.length; i++) { %>
+  <div class="container">
+    <table class="table table-hover">
       <tr>
-        <td><%= i + 1 %></td>
-        <td><%= data[i].name %></td>
-        <td><%= data[i].price %></td>
-        <td><%= data[i].stock %></td>
-        <td><a href="/meals/<%= data[i].id %>/qrcode"><button>Order</button></a></td>
+        <th>No</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>QR Code</th>
       </tr>
-    <% } %>
-  </table>
+      <% for (let i = 0; i < data.length; i++) { %>
+        <tr>
+          <td><%= i + 1 %></td>
+          <td><%= data[i].name %></td>
+          <td><%= data[i].price %></td>
+          <td><%= data[i].stock %></td>
+          <td><a href="/meals/<%= data[i].id %>/qrcode"><button>Order</button></a></td>
+        </tr>
+      <% } %>
+    </table>
+  </div>
 <%- include('partials/footer') %>
