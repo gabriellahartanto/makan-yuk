@@ -1,12 +1,14 @@
-<%- include('partials/header', { title: 'Top-up Money' }) %>
-  <form action="/students/topup" method="POST">
-    <label>Masukkan Username</label><br>
-    <input type="text" name="username"><br>
+<%- include('partials/header') %>
+<%- include('partials/not-home', { title: 'Top-Up Money' }) %>
+  <div class="container">
+    <form action="/students/topup" method="POST">
+      <label>Masukkan Username</label><br>
+      <input type="text" name="username"><br>
 
-    <label>Masukkan Jumlah Uang</label><br>
-    <input type="text" name="money"><br>
+      <label>Masukkan Jumlah Uang</label><br>
+      <input type="text" name="money"><br>
 
-    <input type="submit" value="Tambahkan">
-  </form>
-
+      <input type="submit" value="Tambahkan">
+    </form>
+  </div>
 <%- include('partials/footer') %>

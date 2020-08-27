@@ -1,4 +1,8 @@
-<%- include('partials/header', { title: 'Welcome!' }) %>
-  <h2>Hi there, <%= data.first_name %></h2>
-  <h3>Here is your username: <%= data.username %></h3>
+<%- include('partials/header') %>
+<%- include('partials/not-home', { title: 'Welcome!' }) %>
+  <div class="container">
+    <h2>Hi there student, <%= data.first_name %></h2>
+    <h3>Here is your username: <%= data.username %></h3>
+    <h3>Enjoy your lunch!</h3>
+  </div>
 <%- include('partials/footer') %>

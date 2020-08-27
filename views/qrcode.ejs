@@ -1,4 +1,7 @@
-<%- include('partials/header', { title: 'Meals' }) %>
-  <p><a href="/meals">See all</a></p>
-  <img src="<%= data.qrcode %>">
+<%- include('partials/header') %>
+<%- include('partials/not-home', { title: 'Meals' }) %>
+  <div class="container">
+    <p><a href="/meals">See all</a></p>
+    <img src="<%= data.qrcode %>">
+  </div>
 <%- include('partials/footer') %>

@@ -1,22 +1,25 @@
-<%- include('partials/header', { title: 'Student Register' }) %>
-  <form action="/students/register" method="POST">
-    <div>
-      <label>First Name</label><br>
-      <input type="text" name="first_name">
-    </div>
-    <div>
-      <label>Last Name</label><br>
-      <input type="text" name="last_name">
-    </div>
-    <div>
-        <label>Password</label><br>
-        <input type="password" name="password">
-    </div>
-    <div>
-        <label>Age</label><br>
-        <input type="text" name="age">
-    </div>
+<%- include('partials/header') %>
+<%- include('partials/not-home', { title: 'Student Register' }) %>
+  <div class="container">
+    <form action="/students/register" method="POST">
+      <div>
+        <label>First Name</label><br>
+        <input type="text" name="first_name">
+      </div>
+      <div>
+        <label>Last Name</label><br>
+        <input type="text" name="last_name">
+      </div>
+      <div>
+          <label>Password</label><br>
+          <input type="password" name="password">
+      </div>
+      <div>
+          <label>Age</label><br>
+          <input type="text" name="age">
+      </div>
 
-    <button type="submit">Register</button>
-  </form>
+      <button type="submit">Register</button>
+    </form>
+  </div>
 <%- include('partials/footer') %>

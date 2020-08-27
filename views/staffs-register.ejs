@@ -1,17 +1,20 @@
-<%- include('partials/header', { title: 'Staff Register' }) %>
-  <form action="/staffs/register" method="POST">
-    <div>
-      <label>First Name</label><br>
-      <input type="text" name="first_name">
-    </div>
-    <div>
-      <label>Last Name</label><br>
-      <input type="text" name="last_name">
-    </div>
-    <div>
-      <label>Password</label><br>
-      <input type="password" name="password">
-    </div>
-    <button type="submit">Register</button>
-  </form>
+<%- include('partials/header') %>
+<%- include('partials/not-home', { title: 'Staff Register' }) %>
+  <div class="container">
+    <form action="/staffs/register" method="POST">
+      <div>
+        <label>First Name</label><br>
+        <input type="text" name="first_name">
+      </div>
+      <div>
+        <label>Last Name</label><br>
+        <input type="text" name="last_name">
+      </div>
+      <div>
+        <label>Password</label><br>
+        <input type="password" name="password">
+      </div>
+      <button type="submit">Register</button>
+    </form>
+  </div>
 <%- include('partials/footer') %>
