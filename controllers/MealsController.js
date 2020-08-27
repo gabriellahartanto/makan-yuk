@@ -1,4 +1,4 @@
-const { Meal, StudentMeal } = require('../models');
+const { Meal, StudentMeal,Student } = require('../models');
 const Sequelize = require('sequelize');
 const StudentsController = require('./StudentsController');
 const Op = Sequelize.Op;
