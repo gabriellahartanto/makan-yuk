@@ -3,9 +3,15 @@ const bcrypt = require('bcryptjs');
 
 class StudentsController {
   static choices(req,res){
+      if(req.session.studentId || req.session.staffId){
+        return res.redirect("back")
+      }
       res.render('students.ejs');
   }
   static loginStudentForm(req,res){
+    if(req.session.studentId || req.session.staffId){
+      return res.redirect("back")
+    }
       res.render('students-login.ejs');
   }
   static loginStudentData(req, res) {
@@ -36,6 +42,9 @@ class StudentsController {
   }
 
   static addStudentsForm(req,res){
+    if(req.session.studentId || req.session.staffId){
+      return res.redirect("back")
+    }
       res.render('students-register.ejs');
   }
   static addStudentsData(req,res){

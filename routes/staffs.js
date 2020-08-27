@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const checkStaffLogin = require('../helpers/checkStaffLogin');
+const auth = require('../helpers/auth')
 
 const StaffsController = require('../controllers/StaffsController');
 
@@ -12,8 +12,8 @@ router.post('/register', StaffsController.addStaffsData);
 router.get('/login', StaffsController.loginStaffForm);
 router.post('/login', StaffsController.loginStaffData);
 
-router.use(checkStaffLogin);
 
-router.get('/see', StaffsController.seeStudentMeal);
+
+router.get('/see',[auth], StaffsController.seeStudentMeal);
 
 module.exports = router;

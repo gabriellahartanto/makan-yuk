@@ -4,10 +4,16 @@ const session = require('express-session');
 
 class StaffsController {
   static choices(req, res) {
+    if(req.session.staffId || req.session.studentId){
+      return res.redirect("back")
+    }
     res.render('staffs');
   }
 
   static loginStaffForm(req, res) {
+    if(req.session.staffId || req.session.studentId){
+      return res.redirect("back")
+    }
     res.render('staffs-login');
   }
 
@@ -40,6 +46,9 @@ class StaffsController {
   }
 
   static addStaffsForm(req, res) {
+    if(req.session.staffId || req.session.studentId){
+      return res.redirect("back")
+    }
     res.render('staffs-register');
   }
 
