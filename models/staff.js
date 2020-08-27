@@ -19,6 +19,14 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.STRING,
     password: DataTypes.STRING
   }, {
+    hooks: {
+      beforeCreate: (instance, option) => {
+        instance.username = `${first_name.toLowerCase}${last_name.toLowerCase}@staff`;
+      },
+      beforeUpdate: (instance, option) => {
+        instance.username = `${first_name.toLowerCase}${last_name.toLowerCase}@staff`;
+      }
+    },
     sequelize,
     modelName: 'Staff',
   });
