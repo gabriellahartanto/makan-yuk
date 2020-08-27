@@ -53,10 +53,32 @@ class StudentsController {
       })
   }
   static topUpForm(req,res){
-      res.render('top-up-moneyStudent.ejs', { data })
+      res.render('top-up-moneyStudent.ejs')
   }
   static topUpData(req,res){
-      
+      const username = req.body.username
+      const money = req.body.money
+      Student.findOne({
+        where:{
+          username
+        }
+      })
+      .then(data=>{
+        return Student.update({
+          money
+        },{
+          where:{
+            username
+          }
+        })
+      })
+      .then(hasil=>{
+        res.redirect('/meals')
+      })
+      .catch(err=>{
+        console.log(err)
+        res.send(err)
+      })
   }
 }
 
