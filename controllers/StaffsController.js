@@ -12,7 +12,7 @@ class StaffsController {
   static addStaffsData(req, res) {
     const staff = {
       first_name: req.body.first_name,
-      last_name: req.body.first_name,
+      last_name: req.body.last_name,
       password: req.body.password
     }
     Staff.create(staff)
