@@ -38,16 +38,6 @@ class StaffsController {
     })
   }
 
-  static logoutStaff(req, res) {
-    req.session.destroy(err => {
-      if (err) {
-        res.send(err);
-      } else {
-        res.redirect('/')
-      }
-    })
-  }
-
   static addStaffsForm(req, res) {
     res.render('staffs-register');
   }

@@ -8,6 +8,7 @@ const routerStaffs = require('./staffs');
 const routerStudents = require('./students');
 
 router.get('/', HomeController.home);
+router.get('/logout', HomeController.logout);
 
 router.use('/meals', routerMeals);
 router.use('/staffs', routerStaffs);
