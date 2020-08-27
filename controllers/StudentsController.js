@@ -21,7 +21,7 @@ class StudentsController {
         if (bcrypt.compareSync(req.body.password, data.password)) {
           req.session.studentId = data.id;
           console.log(req.session.studentId);
-          res.redirect('/');
+          res.redirect('/meals');
         } else {
           res.send('Invalid password.');
         }
@@ -50,6 +50,12 @@ class StudentsController {
       .catch(err=>{
           res.send(err)
       })
+  }
+  static topUpForm(req,res){
+      res.render('top-up-moneyStudent.ejs', { data })
+  }
+  static topUpData(req,res){
+      
   }
 }
 
