@@ -8,4 +8,9 @@ router.get('/', StaffsController.choices);
 router.get('/register', StaffsController.addStaffsForm);
 router.post('/register', StaffsController.addStaffsData);
 
+router.get('/login', StaffsController.loginStaffForm);
+router.post('/login', StaffsController.loginStaffData);
+
+router.get('/logout', StaffsController.logoutStaff);
+
 module.exports = router;
