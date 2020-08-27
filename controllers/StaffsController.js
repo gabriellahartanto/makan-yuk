@@ -23,7 +23,7 @@ class StaffsController {
         if (bcrypt.compareSync(req.body.password, data.password)) {
           req.session.staffId = data.id;
           console.log(req.session.staffId);
-          res.redirect('/');
+          res.redirect('/meals');
         } else {
           res.send('Invalid password.');
         }
@@ -41,7 +41,7 @@ class StaffsController {
       if (err) {
         res.send(err);
       } else {
-        res.send('Logged out successfully');
+        res.redirect('/')
       }
     })
   }
