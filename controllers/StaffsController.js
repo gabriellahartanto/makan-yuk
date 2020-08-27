@@ -1,4 +1,4 @@
-const { Staff } = require('../models');
+const { Staff, StudentMeal, Student, Meal } = require('../models');
 const bcrypt = require('bcryptjs');
 const session = require('express-session');
 
@@ -58,6 +58,23 @@ class StaffsController {
       console.log(err);
       res.send(err);
     });
+  }
+
+  static seeStudentMeal(req, res) { // ada checkbox done or not
+    StudentMeal.findAll({
+      include: [Student, Meal]
+    })
+    .then(data => {
+      res.send(data);
+      // res.render('staffs-see-sm', { data });
+    })
+    .catch(err => {
+      res.send(err);
+    });
+  }
+
+  static deleteStudentMeal(req, res) {
+
   }
 }
 

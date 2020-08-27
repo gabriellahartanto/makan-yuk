@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      
     }
   };
   StudentMeal.init({
     id_student: DataTypes.INTEGER,
-    id_meal: DataTypes.INTEGER
+    id_meal: DataTypes.INTEGER,
+    amount: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'StudentMeal',

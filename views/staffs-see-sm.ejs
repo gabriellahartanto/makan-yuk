@@ -1,19 +1,14 @@
 <%- include('partials/header') %>
-<%- include('partials/not-home', { title: 'Meals' }) %>
-  <div class="container">
-    <p><a href="/meals/add">Add Meal</a></p>
-    <p><a href="/students/topup">Top up Money</a></p>
-    <p><a href="/meals/empty">Stock Empty</a></p>
-    <p><a href="/staffs/see">See Student Orders</a></p>
-  </div>
+<%- include('partials/not-home', { title: 'Student Meals' }) %>
   <div class="container">
     <table class="table table-hover">
       <tr>
         <th>No</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Stock</th>
-        <th>QR Code</th>
+        <th>Student</th>
+        <th>Meal</th>
+        <th>Amount</th>
+        <th>Checklist</th>
+        <th>Action</th>
       </tr>
       <% for (let i = 0; i < data.length; i++) { %>
         <tr>
