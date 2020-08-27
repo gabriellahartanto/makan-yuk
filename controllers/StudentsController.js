@@ -38,7 +38,6 @@ class StudentsController {
   static addStudentsForm(req,res){
       res.render('students-register.ejs');
   }
-  
   static addStudentsData(req,res){
       const student = {
           first_name: req.body.first_name,
@@ -54,11 +53,9 @@ class StudentsController {
           res.send(err)
       })
   }
-  
   static topUpForm(req,res){
       res.render('top-up-moneyStudent.ejs')
   }
-
   static topUpData(req,res){
       const username = req.body.username
       let money = parseInt(req.body.money)
@@ -78,11 +75,37 @@ class StudentsController {
         })
       })
       .then(hasil=>{
+        // res.redirect('/meals')
+        return Student.findOne({
+          where:{
+            username
+          }
+        })
+      })
+      .then(hasil=>{
         res.redirect('/meals')
       })
       .catch(err=>{
         console.log(err)
         res.send(err)
+      })
+  }
+  static addStudentsForm(req,res){
+      res.render('students-register.ejs');
+  }
+  static addStudentsData(req,res){
+      const student = {
+          first_name: req.body.first_name,
+          last_name: req.body.last_name,
+          age: req.body.age,
+          password: req.body.password
+      }
+      Student.create(student)
+      .then(data =>{
+          res.render('students-username.ejs',{ data })
+      })
+      .catch(err=>{
+          res.send(err)
       })
   }
 }
