@@ -84,6 +84,7 @@ class MealsController {
     })
     .then(data => {
       // res.send(data);
+      price = data.price;
       console.log(amount)
       if (data.length > 0) {
         const newStock = data[0].stock - amount;
@@ -96,9 +97,8 @@ class MealsController {
       }
     })
     .then(data => {
-      price = data.price;
-      res.send(data);
-      console.log(data)
+      // res.send(data);
+      // console.log(data)
       if (data !== -1) {
         const sm = {
           id_student: req.session.studentId,
