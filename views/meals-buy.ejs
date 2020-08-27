@@ -1,0 +1,19 @@
+<%- include('partials/header', { title: 'Buy Meal' }) %>
+  <form action="/meals/<%= data.id %>/buy" method="POST">
+    <h4><%= data.name %></h4>
+    <div>
+      <label>Amount</label><br>
+      <input type="number" name="amount">
+    </div>
+    <div>
+      <label>Stock Available</label><br>
+      <p><%= data.stock %></p>
+      <%= error %>
+    </div>
+    <div>
+      <label>Price</label><br>
+      <p><%= data.price %></p>
+    </div>
+    <button type="submit">Buy</button>
+  </form>
+<%- include('partials/footer') %>
