@@ -1,7 +1,7 @@
 const { Meal, StudentMeal, Student } = require('../models');
 const Sequelize = require('sequelize');
-const StudentsController = require('./StudentsController');
 const Op = Sequelize.Op;
+const toRupiah = require('../helpers/toRupiah');
 // const qrcode = require('../helpers/qrcode');
 
 class MealsController {
@@ -19,7 +19,7 @@ class MealsController {
         }
       })
       .then(student=>{
-        res.render('meals', { student,data });
+        res.render('meals', { student, data, toRupiah });
       })
       
     })
@@ -74,6 +74,8 @@ class MealsController {
   static buyMealData(req, res) {
     const mealId = req.params.id;
     const amount = req.body.amount;
+    const studentId = req.session.studentId;
+    let price = null;
     Meal.findAll({
       where: {
         id: mealId, 
@@ -94,6 +96,8 @@ class MealsController {
       }
     })
     .then(data => {
+      price = data.price;
+      res.send(data);
       console.log(data)
       if (data !== -1) {
         const sm = {
@@ -106,6 +110,19 @@ class MealsController {
       } else {
         res.redirect(`/meals/${mealId}/buy?errors=` + `Amount ordered exceeds available stock`);
         // res.render('meals-buy', { error });
+      }
+    })
+    .then(data => {
+      return Student.findByPk(studentId)
+    })
+    .then(data => {
+      let student = {
+        money: data.money - (price * amount)
+      }
+      if (student.money < 0) {
+        res.redirect(`/meals/${mealId}/buy?errors=` + `You don't have enough money.`);
+      } else {
+        return Student.update(student, { where: { id: studentId } });
       }
     })
     .then(data => {

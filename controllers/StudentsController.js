@@ -1,6 +1,5 @@
 const { Student } = require('../models');
 const bcrypt = require('bcryptjs');
-const session = require('express-session');
 
 class StudentsController {
   static choices(req,res){
