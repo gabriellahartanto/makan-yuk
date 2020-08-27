@@ -1,4 +1,6 @@
-<%- include('partials/header', { title: 'Buy Meal' }) %>
+<%- include('partials/header') %>
+<%- include('partials/not-home', { title: 'Buy Meal' }) %>
+<div class="container">
   <form action="/meals/<%= data.id %>/buy" method="POST">
     <h4><%= data.name %></h4>
     <div>
@@ -16,4 +18,5 @@
     </div>
     <button type="submit">Buy</button>
   </form>
+</div>
 <%- include('partials/footer') %>

@@ -1,6 +1,9 @@
-<%- include('partials/header', { title: 'Students' }) %>
-  <h3>Are you new?</h3>
-  <a href="students/register"><button type="button">Register</button></a>
-  <h3>Have an account?</h3>
-  <a href="students/login"><button type="button">Login</button></a>
+<%- include('partials/header') %>
+<%- include('partials/not-home', { title: 'Students' }) %>
+  <div class="container">
+    <h3>Are you new?</h3>
+    <a href="students/register"><button type="button">Register</button></a>
+    <h3>Have an account?</h3>
+    <a href="students/login"><button type="button">Login</button></a>
+  </div>
 <%- include('partials/footer') %>
