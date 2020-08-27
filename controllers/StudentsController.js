@@ -20,7 +20,8 @@ class StudentsController {
         // check password
         if (bcrypt.compareSync(req.body.password, data.password)) {
           req.session.studentId = data.id;
-          req.session.studentUsername = data.username
+          req.session.studentUsername = data.username;
+          req.session.studentFullname = data.fullname();
           // console.log(req.session.studentId);//"rikidermawan@staff"
           res.redirect('/meals');
         } else {

@@ -12,6 +12,11 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+
+    lastfirst() {
+      return `${this.last_name}, ${this.first_name}`;
+    }
+
     static associate(models) {
       // define association here
     }

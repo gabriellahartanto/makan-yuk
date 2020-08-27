@@ -24,6 +24,7 @@ class StaffsController {
           req.session.staffId = data.id;
           req.session.staffUsername = data.username;
           req.session.isStaff = true;
+          req.session.staffFullname = data.lastfirst();
           // console.log(req.session.staffId);
           res.redirect('/meals');
         } else {
@@ -62,7 +63,7 @@ class StaffsController {
 
   static seeStudentMeal(req, res) { // ada checkbox done or not
     StudentMeal.findAll({
-      include: [Student, Meal]
+      // include: [Student, Meal]
     })
     .then(data => {
       res.send(data);
