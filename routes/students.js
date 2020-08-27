@@ -8,4 +8,7 @@ router.get('/', StudentsController.choices);
 router.get('/register', StudentsController.addStudentsForm);
 router.post('/register', StudentsController.addStudentsData);
 
+router.get('/login',StudentsController.loginStudentForm);
+router.post('/login',StudentsController.loginStudentData)
+
 module.exports = router;
