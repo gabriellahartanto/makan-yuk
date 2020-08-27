@@ -4,16 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Makan Yuk</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
-    table,th,td{
+    /* table,th,td{
       border: 1px solid;
     }
     th{
       background-color: crimson;
-    }
+    } */
   </style>
 </head>
 <body>
+  <nav class="navbar navbar-inverse navbar-fixed-top" style="padding-bottom: 10px; padding-top: 10px;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">Makan Yuk!</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/students">Students</a></li>
+        <li><a href="/staffs">Staffs</a></li>
+        <li><a href="/meals">Meals</a></li>
+      </ul>
+    </div>
+  </nav>
   <h1><%= title %></h1>
-    <p><button><a href="/">Home</a></button> | <button><a href="/students">Students</a></button> | <button><a href="/staffs">Staff</a></button> | <button><a href="/meals">Meals</a></button> | <a href="/staffs/logout">Logout</a></p>
+  <!-- <p><a href="/">Home</a> | <a href="/students">Students</a> | <a href="/staffs">Staff</a> | <a href="/meals">Meals</a> | <a href="/staffs/logout">Logout</a></p> -->
  
