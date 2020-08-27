@@ -4,9 +4,11 @@
     <p><a href="/meals/add"><button class="btn btn-primary">Add Meal</button></a> <a href="/meals/empty"><button class="btn btn-warning">Stock Empty</button></a></p>
     <p><a href="/students/topup"><button class="btn btn-success">Top-Up Money</button></a></p>
     <p><a href="/staffs/see">See Student Orders</a></p>
+    <h2><%= student.username %>'s balance: <%= !student.money ? '' : toRupiah(student.money)%></h2>
   </div>
-  <div class="container">
-    <table class="table table-hover" style="margin-bottom: 100px">
+  <br>
+  <div class="container" style="margin-bottom: 100px">
+    <table class="table table-hover">
       <tr>
         <th>No</th>
         <th>Name</th>
@@ -23,8 +25,6 @@
           <td><a href="/meals/<%= data[i].id %>/qrcode"><button class="btn">Order</button></a></td>
         </tr>
       <% } %>
-    </table>
-    
-    <p>uang <%= user.username %>: <%= user.money%></p>
+    </table> 
   </div>
   <%- include('partials/footer') %>

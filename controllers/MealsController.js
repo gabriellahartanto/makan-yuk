@@ -3,6 +3,7 @@ const Sequelize = require('sequelize');
 const StudentsController = require('./StudentsController');
 const StaffsController = require('./StaffsController');
 const Op = Sequelize.Op;
+const toRupiah = require('../helpers/toRupiah');
 // const qrcode = require('../helpers/qrcode');
 
 class MealsController {
@@ -29,8 +30,8 @@ class MealsController {
           id:req.session.studentId
         }
       })
-      .then(user=>{
-        res.render('meals', { user,data });
+      .then(student=>{
+        res.render('meals', { student, data, toRupiah });
       })
       
     })
@@ -75,7 +76,7 @@ class MealsController {
     const errors = req.query.errors;
     Meal.findByPk(mealId)
     .then(data => {
-      res.render('meals-buy', { data, errors });
+      res.render('meals-buy', { data, errors, toRupiah });
     })
     .catch(err => {
       res.send(err);
@@ -85,6 +86,8 @@ class MealsController {
   static buyMealData(req, res) {
     const mealId = req.params.id;
     const amount = req.body.amount;
+    const studentId = req.session.studentId;
+    let price = null;
     Meal.findAll({
       where: {
         id: mealId, 
@@ -95,6 +98,7 @@ class MealsController {
       // res.send(data);
       console.log(amount)
       if (data.length > 0) {
+        price = data[0].price;
         const newStock = data[0].stock - amount;
         return Meal.update({ stock: newStock }, { 
           where: { id: mealId }, 
@@ -105,7 +109,8 @@ class MealsController {
       }
     })
     .then(data => {
-      console.log(data)
+      // res.send(data);
+      // console.log(data)
       if (data !== -1) {
         const sm = {
           id_student: req.session.studentId,
@@ -117,6 +122,19 @@ class MealsController {
       } else {
         res.redirect(`/meals/${mealId}/buy?errors=` + `Amount ordered exceeds available stock`);
         // res.render('meals-buy', { error });
+      }
+    })
+    .then(data => {
+      return Student.findByPk(studentId)
+    })
+    .then(data => {
+      let student = {
+        money: data.money - (price * amount)
+      }
+      if (student.money < 0) {
+        res.redirect(`/meals/${mealId}/buy?errors=` + `You don't have enough money.`);
+      } else {
+        return Student.update(student, { where: { id: studentId } });
       }
     })
     .then(data => {

@@ -7,16 +7,17 @@
       <label>Amount</label><br>
       <input type="number" name="amount">
     </div>
+    <br>
     <div>
-      <label>Stock Available</label>
-      <p><%= data.stock %></p>
+      <p><b>Stock Available: </b><%= data.stock %></p>
       <%= errors %>
     </div>
     <div>
-      <label>Price</label><br>
-      <p><%= data.price %></p>
+      <h4><b>Price: </b><%= toRupiah(data.price) %></h4>
     </div>
-    <button type="submit">Buy</button>
+    <br>
+    <button type="submit" class="btn btn-primary">Buy</button>
+    <a href="/students/topup"><button type="button" class="btn btn-success">Top Up</button></a>
   </form>
 </div>
 <%- include('partials/footer') %>
