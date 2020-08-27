@@ -1,4 +1,4 @@
-const { Meal } = require('../models');
+const { Meal,Student } = require('../models');
 const Sequelize = require('sequelize');
 const meal = require('../models/meal');
 const Op = Sequelize.Op;
@@ -12,8 +12,16 @@ class MealsController {
       }
     })
     .then(data => {
-      // console.log(data.qrcode);
-      res.render('meals', { data });
+      console.log(req.session.studentId);
+      return Student.findOne({
+        where:{
+          id:req.session.studentId
+        }
+      })
+      .then(student=>{
+        res.render('meals', { student,data });
+      })
+      
     })
     .catch(err => {
       console.log(err)
