@@ -11,7 +11,7 @@ router.post('/register', StudentsController.addStudentsData);
 router.get('/login',StudentsController.loginStudentForm);
 router.post('/login',StudentsController.loginStudentData);
 
-router.get('/topup/:id',StudentsController.topUpForm);
-router.post('/topup/:id',StudentsController.topUpData);
+router.get('/topup',StudentsController.topUpForm);
+router.post('/topup',StudentsController.topUpData);
 
 module.exports = router;

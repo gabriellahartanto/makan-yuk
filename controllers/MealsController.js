@@ -16,6 +16,7 @@ class MealsController {
       res.render('meals', { data });
     })
     .catch(err => {
+      console.log(err)
       res.send(err);
     });
   }
