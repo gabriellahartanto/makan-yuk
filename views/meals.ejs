@@ -1,12 +1,12 @@
 <%- include('partials/header') %>
 <%- include('partials/not-home', { title: 'Meals' }) %>
   <div class="container">
-    <p><a href="/meals/add">Add Meal</a></p>
-    <p><a href="/students/topup">Top up Money</a></p>
-    <p><a href="/meals/empty">Stock Empty</a></p>
+    <p><a href="/meals/add"><button class="btn btn-primary">Add Meal</button></a> <a href="/meals/empty"><button class="btn btn-warning">Stock Empty</button></a></p>
+    <p><a href="/students/topup"><button class="btn btn-success">Top-Up Money</button></a></p>
+    <p><a href="/staffs/see">See Student Orders</a></p>
   </div>
   <div class="container">
-    <table class="table table-hover">
+    <table class="table table-hover" style="margin-bottom: 100px">
       <tr>
         <th>No</th>
         <th>Name</th>

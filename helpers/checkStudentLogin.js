@@ -2,7 +2,7 @@ function checkStudentLogin(req, res, next) {
     if (req.session.studentId) {
       next();
     } else {
-      res.redirect('/');
+      res.redirect('/students/login');
     }
   }
   

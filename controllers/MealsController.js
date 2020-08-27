@@ -1,6 +1,6 @@
-const { Meal,Student } = require('../models');
+const { Meal, StudentMeal } = require('../models');
 const Sequelize = require('sequelize');
-const meal = require('../models/meal');
+const StudentsController = require('./StudentsController');
 const Op = Sequelize.Op;
 // const qrcode = require('../helpers/qrcode');
 
@@ -78,7 +78,7 @@ class MealsController {
       where: {
         id: mealId, 
         stock: { [Op.gte]: amount }
-      }
+      }, 
     })
     .then(data => {
       // res.send(data);
@@ -96,16 +96,65 @@ class MealsController {
     .then(data => {
       console.log(data)
       if (data !== -1) {
-        res.redirect('/meals');
+        const sm = {
+          id_student: req.session.studentId,
+          id_meal: mealId,
+          amount: amount
+        }
+        console.log(sm)
+        return StudentMeal.create(sm)
       } else {
         res.redirect(`/meals/${mealId}/buy?errors=` + `Amount ordered exceeds available stock`);
         // res.render('meals-buy', { error });
       }
     })
+    .then(data => {
+      res.redirect('/meals');
+    })
     .catch(err => {
       res.send(err);
       console.log(err);
     })
+  }
+
+  static emptyList(req, res) {
+    Meal.findAll({
+      where: { stock: 0 },
+    })
+    .then(data => {
+      // res.send(data);
+      res.render('meals-empty', { data });
+    })
+    .catch(err => {
+      res.send(err);
+    });
+  }
+
+  static restockMealForm(req, res) {
+    const id = req.params.id;
+    Meal.findByPk(id)
+    .then(data => {
+      // res.send(data);
+      res.render('meals-restock', { data });
+    })
+    .catch(err => {
+      res.render(err);
+    });
+  }
+
+  static restockMealData(req, res) {
+    const id = req.params.id;
+    const updatedStock = {
+      stock: req.body.amount
+    }
+    Meal.update(updatedStock, { where: { id } })
+    .then(data => {
+      // res.send(data);
+      res.redirect('/meals/empty');
+    })
+    .catch(err => {
+      res.render(err);
+    });
   }
 }
 

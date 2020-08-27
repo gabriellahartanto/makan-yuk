@@ -1,0 +1,25 @@
+<%- include('partials/header') %>
+<%- include('partials/not-home', { title: 'Stock Empty' }) %>
+  <div class="container">
+    <p><a href="/meals/empty">Stock Empty</a></p>
+    <p><a href="/staffs/see">See All</a></p>
+  </div>
+  <div class="container">
+    <table class="table table-hover">
+      <tr>
+        <th>No</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+      <% for (let i = 0; i < data.length; i++) { %>
+        <tr>
+          <td><%= i + 1 %></td>
+          <td><%= data[i].name %></td>
+          <td><%= data[i].price %></td>
+          <td><a href="/meals/<%= data[i].id %>/restock"><button class="btn btn-primary">Restock</button></a></td>
+        </tr>
+      <% } %>
+    </table>
+  </div>
+  <%- include('partials/footer') %>

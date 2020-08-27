@@ -1,0 +1,15 @@
+<%- include('partials/header') %>
+<%- include('partials/not-home', { title: 'Restock Meal' }) %>
+  <div class="container">
+    <h2><%= data.name %></h2>
+  </div>
+  <div class="container">
+    <form action="/meals/<%= data.id %>/restock" method="POST">
+      <div>
+        <label>Amount</label><br>
+        <input type="number" name="amount">
+      </div>
+      <button type="submit" class="btn">Restock</button>
+    </form>
+  </div>
+<%- include('partials/footer') %>
