@@ -22,8 +22,10 @@ class StaffsController {
         // check password
         if (bcrypt.compareSync(req.body.password, data.password)) {
           req.session.staffId = data.id;
-          console.log(req.session.staffId);
-          res.redirect('/');
+          req.session.staffUsername = data.username;
+          req.session.isStaff = true;
+          // console.log(req.session.staffId);
+          res.redirect('/meals');
         } else {
           res.send('Invalid password.');
         }

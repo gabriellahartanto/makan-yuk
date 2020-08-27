@@ -65,21 +65,28 @@ class MealsController {
   static buyMealData(req, res) {
     const mealId = req.params.id;
     const amount = req.body.amount;
-    Meal.findByPk(mealId, { where: {
-      stock: {[Op.gte]: amount}
-    }})
-    .then(data => {
-      // res.send(data);
-      if (data) {
-        const newStock = data.stock - amount;
-        return Meal.update({ stock: newStock }, { 
-          where: { id }, 
-          validate: false 
-        })
+    Meal.findAll({
+      where: {
+        id: mealId, 
+        stock: { [Op.gte]: amount }
       }
     })
     .then(data => {
-      if (data) {
+      // res.send(data);
+      console.log(amount)
+      if (data.length > 0) {
+        const newStock = data[0].stock - amount;
+        return Meal.update({ stock: newStock }, { 
+          where: { id: mealId }, 
+          validate: false 
+        })
+      } else {
+        return -1
+      }
+    })
+    .then(data => {
+      console.log(data)
+      if (data !== -1) {
         res.redirect('/meals');
       } else {
         res.redirect(`/meals/${mealId}/buy?errors=` + `Amount ordered exceeds available stock`);
@@ -88,6 +95,7 @@ class MealsController {
     })
     .catch(err => {
       res.send(err);
+      console.log(err);
     })
   }
 }
