@@ -1,6 +1,7 @@
-const { Meal, StudentMeal,Student } = require('../models');
+const { Meal, StudentMeal,Student,Staff } = require('../models');
 const Sequelize = require('sequelize');
 const StudentsController = require('./StudentsController');
+const StaffsController = require('./StaffsController');
 const Op = Sequelize.Op;
 // const qrcode = require('../helpers/qrcode');
 
@@ -13,13 +14,23 @@ class MealsController {
     })
     .then(data => {
       console.log(req.session.studentId);
+      if(req.session.staffId){
+        return Staff.findOne({
+          where:{
+            id:req.session.staffId
+          }
+        })
+        .then(user=>{
+          res.render('meals',{ user,data })
+        })
+      }
       return Student.findOne({
         where:{
           id:req.session.studentId
         }
       })
-      .then(student=>{
-        res.render('meals', { student,data });
+      .then(user=>{
+        res.render('meals', { user,data });
       })
       
     })
