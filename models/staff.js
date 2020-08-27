@@ -17,6 +17,11 @@ module.exports = (sequelize, DataTypes) => {
       return `${this.last_name}, ${this.first_name}`;
     }
 
+    static salthash(pwd) {
+      const salt = bcrypt.genSaltSync(10);
+      return bcrypt.hashSync(pwd, salt)
+    }
+
     static associate(models) {
       // define association here
     }
@@ -30,8 +35,9 @@ module.exports = (sequelize, DataTypes) => {
     hooks: {
       beforeCreate: (instance, option) => {
         instance.username = `${instance.first_name.toLowerCase()}${instance.last_name.toLowerCase()}@staff`;
-        const salt = bcrypt.genSaltSync(10);
-        instance.password = bcrypt.hashSync(instance.password, salt);
+        // const salt = bcrypt.genSaltSync(10);
+        // instance.password = bcrypt.hashSync(instance.password, salt);
+        instance.password = Staff.salthash(instance.password);
       }
       // beforeUpdate: (instance, option) => {
       //   instance.username = `${instance.first_name.toLowerCase()}${instance.last_name.toLowerCase()}@staff`;

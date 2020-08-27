@@ -62,8 +62,8 @@ class StaffsController {
   }
 
   static seeStudentMeal(req, res) { // ada checkbox done or not
-    StudentMeal.findAll({
-      // include: [Student, Meal]
+    Student.findAll({
+      include: Meal
     })
     .then(data => {
       res.send(data);

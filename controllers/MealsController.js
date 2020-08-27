@@ -64,7 +64,7 @@ class MealsController {
     const errors = req.query.errors;
     Meal.findByPk(mealId)
     .then(data => {
-      res.render('meals-buy', { data, errors });
+      res.render('meals-buy', { data, errors, toRupiah });
     })
     .catch(err => {
       res.send(err);
@@ -84,9 +84,9 @@ class MealsController {
     })
     .then(data => {
       // res.send(data);
-      price = data.price;
       console.log(amount)
       if (data.length > 0) {
+        price = data[0].price;
         const newStock = data[0].stock - amount;
         return Meal.update({ stock: newStock }, { 
           where: { id: mealId }, 
