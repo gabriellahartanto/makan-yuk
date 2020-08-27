@@ -57,13 +57,14 @@ class StudentsController {
   }
   static topUpData(req,res){
       const username = req.body.username
-      const money = req.body.money
+      let money = parseInt(req.body.money)
       Student.findOne({
         where:{
           username
         }
       })
       .then(data=>{
+        money= data.money+money;
         return Student.update({
           money
         },{
