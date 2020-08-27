@@ -1,6 +1,6 @@
 class HomeController {
   static home(req, res) {
-    console.log(req.session.staffId);
+    console.log(`staff id: ${req.session.staffId}`);
     res.render('home');
   }
 }
