@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const checkStaffLogin = require('../helpers/checkStaffLogin');
+const auth = require('../helpers/auth')
+
 // const checkStudentLogin = require('../helpers/checkStudentLogin');
 
 const MealsController = require('../controllers/MealsController');
 
-router.get('/', MealsController.allMeals);
+router.get('/',auth, MealsController.allMeals);
 
 // router.use(checkStudentLogin);
 router.get('/:id/qrcode', MealsController.getQRCode);
