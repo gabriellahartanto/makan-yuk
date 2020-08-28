@@ -13,7 +13,7 @@ router.get('/login', StaffsController.loginStaffForm);
 router.post('/login', StaffsController.loginStaffData);
 
 
-
 router.get('/see',[auth], StaffsController.seeStudentMeal);
+router.post('/see',[auth], StaffsController.deleteStudentMeal);
 
 module.exports = router;

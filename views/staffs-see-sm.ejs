@@ -1,24 +1,26 @@
 <%- include('partials/header') %>
 <%- include('partials/not-home', { title: 'Student Meals' }) %>
-  <div class="container">
-    <table class="table table-hover">
-      <tr>
-        <th>No</th>
-        <th>Student</th>
-        <th>Meal</th>
-        <th>Amount</th>
-        <th>Checklist</th>
-        <th>Action</th>
-      </tr>
-      <% for (let i = 0; i < data.length; i++) { %>
+  <div class="container" style="margin-bottom: 100px;">
+    <form action="/staffs/see" method="POST">
+      <table class="table table-hover">
         <tr>
-          <td><%= i + 1 %></td>
-          <td><%= data[i].name %></td>
-          <td><%= data[i].price %></td>
-          <td><%= data[i].stock %></td>
-          <td><a href="/meals/<%= data[i].id %>/qrcode"><button class="btn">Order</button></a></td>
+          <th>No</th>
+          <th>Student</th>
+          <th>Meal</th>
+          <th>Amount</th>
+          <th>Checklist</th>
         </tr>
-      <% } %>
-    </table>
+        <% for (let i = 0; i < data.length; i++) { %>
+          <tr>
+            <td><%= i + 1 %></td>
+            <td><%= data[i].username %></td>
+            <td><%= data[i]['Meals.name'] %></td>
+            <td><%= data[i]['Meals.StudentMeal.amount'] %></td>
+            <td><input type="checkbox" value="<%= data[i]['Meals.StudentMeal.id'] %>" name="id[]"></td>
+          </tr>
+        <% } %>
+      </table>
+      <button type="submit" class="btn btn-danger">Remove Done</button>
+    </form>
   </div>
   <%- include('partials/footer') %>
