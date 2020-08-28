@@ -23,7 +23,8 @@ class MealsController {
           }
         })
         .then(user=>{
-          res.render('meals',{ user,data })
+          let student = null;
+          res.render('meals',{ user, data, student })
         })
       }
       return Student.findOne({
@@ -32,6 +33,9 @@ class MealsController {
         }
       })
       .then(student=>{
+        if (req.session.isStaff) {
+          student = null;
+        }
         res.render('meals', { student, data, toRupiah });
       })
       

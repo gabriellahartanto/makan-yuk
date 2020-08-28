@@ -4,7 +4,9 @@
     <p><a href="/meals/add"><button class="btn btn-primary">Add Meal</button></a> <a href="/meals/empty"><button class="btn btn-warning">Stock Empty</button></a></p>
     <p><a href="/students/topup"><button class="btn btn-success">Top-Up Money</button></a></p>
     <p><a href="/staffs/see">See Student Orders</a></p>
-    <h2><%= student.username %>'s balance: <%= !student.money ? '' : toRupiah(student.money)%></h2>
+    <% if (student) { %>
+      <h2><%= student.username %>'s balance: <%= !student.money ? '' : toRupiah(student.money)%></h2>
+    <% } %>
   </div>
   <br>
   <div class="container" style="margin-bottom: 100px">
