@@ -72,11 +72,18 @@ class StaffsController {
 
   static seeStudentMeal(req, res) { // ada checkbox done or not
     Student.findAll({
-      include: Meal
+      include: [{ model: Meal, required: true }],
+      raw: true
     })
+    // .then(data => {
+    //   return Meal.findAll({
+    //     include: [{ model: Student, required: true }],
+    //   raw: true
+    //   })
+    // })
     .then(data => {
-      res.send(data);
-      // res.render('staffs-see-sm', { data });
+      // res.send(data);
+      res.render('staffs-see-sm', { data });
     })
     .catch(err => {
       res.send(err);
@@ -84,7 +91,17 @@ class StaffsController {
   }
 
   static deleteStudentMeal(req, res) {
-
+    const id = req.body.id
+    // res.send(id);
+    StudentMeal.destroy({
+      where: { id }
+    })
+    .then(data => {
+      res.redirect('/staffs/see');
+    })
+    .catch(err => {
+      res.send(err);
+    });
   }
 }
 
