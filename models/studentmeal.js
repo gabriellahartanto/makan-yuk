@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   StudentMeal.init({
-    id: { type: DataTypes.INTEGER, primaryKey: true },
+    id: { type: DataTypes.INTEGER, primaryKey: true, allowNull: false, autoIncrement: true },
     id_student: DataTypes.INTEGER,
     id_meal: DataTypes.INTEGER,
     amount: DataTypes.INTEGER

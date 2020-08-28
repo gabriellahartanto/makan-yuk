@@ -123,7 +123,7 @@ class MealsController {
           id_meal: mealId,
           amount: amount
         }
-        console.log(sm)
+        // console.log(sm)
         return StudentMeal.create(sm)
       } else {
         res.redirect(`/meals/${mealId}/buy?errors=` + `Amount ordered exceeds available stock`);
