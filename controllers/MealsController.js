@@ -8,11 +8,12 @@ const toRupiah = require('../helpers/toRupiah');
 
 class MealsController {
   static allMeals(req, res) {
-    Meal.findAll({
-      where: {
-        stock: {[Op.gt]: 0}
-      }
-    })
+    Meal.greaterthan(1)
+    // Meal.findAll({
+    //   where: {
+    //     stock: {[Op.gt]: 0}
+    //   }
+    // })
     .then(data => {
       console.log(req.session.studentId);
       if(req.session.staffId){
@@ -88,12 +89,13 @@ class MealsController {
     const amount = req.body.amount;
     const studentId = req.session.studentId;
     let price = null;
-    Meal.findAll({
-      where: {
-        id: mealId, 
-        stock: { [Op.gte]: amount }
-      }, 
-    })
+    Meal.greaterthan(amount, mealId)
+    // Meal.findAll({
+    //   where: {
+    //     id: mealId, 
+    //     stock: { [Op.gte]: amount }
+    //   }, 
+    // })
     .then(data => {
       // res.send(data);
       console.log(amount)
