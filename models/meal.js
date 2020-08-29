@@ -39,7 +39,8 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     hooks: {
       afterCreate: (instance, options) => {
-        return qrcode(`http://localhost:3000/meals/${instance.id}/buy`)
+        // const host = instance.qrcode;
+        return qrcode(`http://${options.host}/meals/${instance.id}/buy`)
         .then(data => {
           return Meal.update({ qrcode: data }, { where: { id: instance.id } });
         })

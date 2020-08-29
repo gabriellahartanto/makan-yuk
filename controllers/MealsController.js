@@ -51,12 +51,14 @@ class MealsController {
   }
 
   static addMealData(req, res) {
+    const host = req.get('host');
     const meal = {
       name: req.body.name,
       stock: req.body.stock,
-      price: req.body.price,
+      price: req.body.price
+      // qrcode: host
     }
-    Meal.create(meal)
+    Meal.create(meal, { host })
     .then(data => {
       res.redirect('/meals');
     })
