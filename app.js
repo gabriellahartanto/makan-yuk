@@ -7,9 +7,9 @@ const router = require('./routes/index');
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+// app.get('/', (req, res) => {
+//   res.send('Hello World!')
+// })
 
 app.use(session({
   secret: 'nasi liwet',
@@ -18,7 +18,7 @@ app.use(session({
   cookie: { secure: false }
 }));
 
-// app.use('/', router);
+app.use('/', router);
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
