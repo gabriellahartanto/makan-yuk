@@ -9,7 +9,7 @@
     <% } %>
   </div>
   <br>
-  <div class="container" style="margin-bottom: 100px">
+  <div class="container">
     <table class="table table-hover">
       <tr>
         <th>No</th>
@@ -24,9 +24,13 @@
           <td><%= data[i].name %></td>
           <td><%= data[i].price %></td>
           <td><%= data[i].stock %></td>
-          <td><a href="/meals/<%= data[i].id %>/qrcode"><button class="btn">Order</button></a></td>
+          <td><a href="/meals/<%= data[i].id %>/qrcode"><button class="btn btn-info">Order</button></a></td>
         </tr>
       <% } %>
     </table> 
+    <br>
+    <br>
+    <br>
+    <br>
   </div>
   <%- include('partials/footer') %>

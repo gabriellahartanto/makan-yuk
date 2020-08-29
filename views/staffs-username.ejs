@@ -2,6 +2,11 @@
 <%- include('partials/not-home', { title: 'Welcome!' }) %>
   <div class="container">
     <h2>Hi there, <%= data.first_name %></h2>
+    <br>
     <h3>Here is your username: <%= data.username %></h3>
+    <br>
+    <h3>Have a nice day!</h3>
+    <br>
+    <a href="/staffs/login"><button type="button" class="btn btn-primary">Login</button></a>
   </div>
 <%- include('partials/footer') %>

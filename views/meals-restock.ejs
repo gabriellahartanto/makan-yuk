@@ -6,10 +6,12 @@
   <div class="container">
     <form action="/meals/<%= data.id %>/restock" method="POST">
       <div>
+        <br>
         <label>Amount</label><br>
         <input type="number" name="amount">
       </div>
-      <button type="submit" class="btn">Restock</button>
+      <br>
+      <button type="submit" class="btn btn-primary">Restock</button>
     </form>
   </div>
 <%- include('partials/footer') %>
